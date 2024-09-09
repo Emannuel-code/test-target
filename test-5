@@ -1,0 +1,52 @@
+public class InterruptoresLampadas {
+
+    public static void main(String[] args) {
+        boolean[] interruptores = {false, false, false}; 
+        boolean[] lampadas = {false, false, false}; 
+
+        ligarInterruptor(interruptores, 0);
+        pausar(10000); 
+
+        desligarInterruptor(interruptores, 0);
+        ligarInterruptor(interruptores, 1);
+        
+        atualizarLampadas(interruptores, lampadas);
+
+        verificarLampadas(lampadas);
+    }
+
+    public static void ligarInterruptor(boolean[] interruptores, int indice) {
+        interruptores[indice] = true;
+    }
+
+    public static void desligarInterruptor(boolean[] interruptores, int indice) {
+        interruptores[indice] = false;
+    }
+
+    public static void atualizarLampadas(boolean[] interruptores, boolean[] lampadas) {
+        if (interruptores[0]) {
+            lampadas[0] = true; 
+        }
+        if (interruptores[1]) {
+            lampadas[1] = true;
+        }
+    }
+
+    public static void pausar(int milissegundos) {
+        try {
+            Thread.sleep(milissegundos);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void verificarLampadas(boolean[] lampadas) {
+        for (int i = 0; i < lampadas.length; i++) {
+            if (lampadas[i]) {
+                System.out.println("Lâmpada " + (i + 1) + " está acesa.");
+            } else {
+                System.out.println("Lâmpada " + (i + 1) + " está apagada.");
+            }
+        }
+    }
+}
