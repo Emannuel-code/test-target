@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Fibonacci {
+
+    public static void gerarFibonacci(int n) {
+        int primeiro = 0, segundo = 1;
+        
+        System.out.print("Sequência de Fibonacci: " + primeiro + ", " + segundo);
+
+        for (int i = 2; i < n; i++) {
+            int proximo = primeiro + segundo;
+            System.out.print(", " + proximo);
+            primeiro = segundo;
+            segundo = proximo;
+        }
+        System.out.println();
+    }
+
+    public static void gerarFibonacciAteValor(int valorMaximo) {
+        int primeiro = 0, segundo = 1;
+
+        System.out.print("Sequência de Fibonacci até " + valorMaximo + ": " + primeiro + ", " + segundo);
+
+        while (segundo <= valorMaximo) {
+            int proximo = primeiro + segundo;
+            if (proximo > valorMaximo) break;
+            System.out.print(", " + proximo);
+            primeiro = segundo;
+            segundo = proximo;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Escolha uma opção:");
+        System.out.println("1 - Gerar sequência de Fibonacci por número de termos");
+        System.out.println("2 - Gerar sequência de Fibonacci até um valor máximo");
+        int opcao = scanner.nextInt();
+
+        if (opcao == 1) {
+            System.out.print("Digite o número de termos: ");
+            int n = scanner.nextInt();
+            gerarFibonacci(n);
+        } else if (opcao == 2) {
+            System.out.print("Digite o valor máximo: ");
+            int valorMaximo = scanner.nextInt();
+            gerarFibonacciAteValor(valorMaximo);
+        } else {
+            System.out.println("Opção inválida.");
+        }
+
+        scanner.close();
+    }
+}
